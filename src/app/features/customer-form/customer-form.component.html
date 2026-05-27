@@ -1,0 +1,62 @@
+<div class="page-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        {{ isEditMode ? 'Editar Cliente' : 'Novo Cliente' }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+        <!-- Nome -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="name" placeholder="Nome completo" />
+          <mat-error *ngIf="hasError('name', 'required')">Nome é obrigatório</mat-error>
+          <mat-error *ngIf="hasError('name', 'minlength')">Mínimo de 3 caracteres</mat-error>
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>E-mail</mat-label>
+          <input matInput formControlName="email" placeholder="exemplo@email.com" />
+          <mat-error *ngIf="hasError('email', 'required')">E-mail é obrigatório</mat-error>
+          <mat-error *ngIf="hasError('email', 'email')">E-mail inválido</mat-error>
+        </mat-form-field>
+
+        <!-- CPF/CNPJ -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>CPF / CNPJ</mat-label>
+          <input matInput formControlName="document" placeholder="000.000.000-00 ou 00.000.000/0000-00" />
+          <mat-error *ngIf="hasError('document', 'required')">Documento é obrigatório</mat-error>
+          <mat-error *ngIf="hasError('document', 'invalidDocument')">CPF ou CNPJ inválido</mat-error>
+        </mat-form-field>
+
+        <!-- Status -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="active">Ativo</mat-option>
+            <mat-option value="inactive">Inativo</mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasError('status', 'required')">Status é obrigatório</mat-error>
+        </mat-form-field>
+
+        <!-- Ações -->
+        <div class="form-actions">
+          <button mat-stroked-button type="button" routerLink="/">
+            <mat-icon>arrow_back</mat-icon>
+            Cancelar
+          </button>
+
+          <button mat-flat-button color="primary" type="submit">
+            <mat-icon>save</mat-icon>
+            {{ isEditMode ? 'Salvar Alterações' : 'Cadastrar' }}
+          </button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
