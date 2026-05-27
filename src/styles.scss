@@ -16,3 +16,23 @@ html, body {
 .spacer {
   flex: 1 1 auto;
 }
+
+//─── Snackbar styles ────────────────────────────────────────────
+
+.snack-success {
+  background-color: #2e7d32 !important;
+  color: white !important;
+
+  .mat-mdc-snack-bar-action {
+    color: #a5d6a7 !important;
+  }
+}
+
+.snack-warn {
+  background-color: #c62828 !important;
+  color: white !important;
+
+  .mat-mdc-snack-bar-action {
+    color: #ef9a9a !important;
+  }
+}

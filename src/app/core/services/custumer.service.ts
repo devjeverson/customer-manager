@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Customer } from '../../models/custumer.model';
 
@@ -8,7 +9,12 @@ const STORAGE_KEY = 'customers';
   providedIn: 'root'
 })
 export class CustomerService {
-  private customers$ = new BehaviorSubject<Customer[]>(this.loadFromStorage());
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly customers$ = new BehaviorSubject<Customer[]>([]);
+
+  constructor() {
+    this.customers$.next(this.loadFromStorage());
+  }
 
   // ─── Read ────────────────────────────────────────────────
 
@@ -53,10 +59,18 @@ export class CustomerService {
   }
 
   private saveToStorage(customers: Customer[]): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(customers));
   }
 
   private loadFromStorage(): Customer[] {
+    if (!isPlatformBrowser(this.platformId)) {
+      return [];
+    }
+
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
 
@@ -66,4 +80,5 @@ export class CustomerService {
       return [];
     }
   }
+
 }
