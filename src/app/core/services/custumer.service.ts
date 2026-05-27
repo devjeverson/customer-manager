@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Injectable, inject, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Customer } from '../../models/custumer.model';
 
 const STORAGE_KEY = 'customers';
@@ -10,6 +11,7 @@ const STORAGE_KEY = 'customers';
 })
 export class CustomerService {
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly snackbar = inject(MatSnackBar);
   private readonly customers$ = new BehaviorSubject<Customer[]>([]);
 
   constructor() {
@@ -36,6 +38,7 @@ export class CustomerService {
     };
 
     this.updateList([...this.customers$.getValue(), newCustomer]);
+    this.notify('Cliente cadastrado com sucesso!');
   }
 
   update(id: string, data: Omit<Customer, 'id' | 'createdAt'>): void {
@@ -44,11 +47,13 @@ export class CustomerService {
     );
 
     this.updateList(updated);
+    this.notify('Cliente atualizado com sucesso!');
   }
 
   delete(id: string): void {
     const filtered = this.customers$.getValue().filter(c => c.id !== id);
     this.updateList(filtered);
+    this.notify('Cliente excluído.');
   }
 
   // ─── Storage ─────────────────────────────────────────────
@@ -79,6 +84,14 @@ export class CustomerService {
     } catch {
       return [];
     }
+  }
+
+  private notify(message: string): void {
+    this.snackbar.open(message, 'Fechar', {
+      duration: 3000,
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+    });
   }
 
 }
