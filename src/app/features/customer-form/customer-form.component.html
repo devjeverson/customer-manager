@@ -1,62 +1,91 @@
 <div class="page-container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>
-        {{ isEditMode ? 'Editar Cliente' : 'Novo Cliente' }}
-      </mat-card-title>
-    </mat-card-header>
+  <div class="form-page">
 
-    <mat-card-content>
+    <div class="form-header">
+      <a class="back-link" routerLink="/">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </a>
+      <h1 class="form-title">{{ isEditMode ? 'Editar Cliente' : 'Novo Cliente' }}</h1>
+      <p class="form-subtitle">{{ isEditMode ? 'Atualize os dados do cliente' : 'Preencha os dados para cadastrar' }}</p>
+    </div>
+
+    <div class="form-card">
       <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
 
-        <!-- Nome -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Nome</mat-label>
-          <input matInput formControlName="name" placeholder="Nome completo" />
-          <mat-error *ngIf="hasError('name', 'required')">Nome é obrigatório</mat-error>
-          <mat-error *ngIf="hasError('name', 'minlength')">Mínimo de 3 caracteres</mat-error>
-        </mat-form-field>
+        <div class="field-group">
+          <label class="field-label" for="name">Nome <span class="required">*</span></label>
+          <input
+            id="name"
+            class="field-input"
+            [class.error]="isInvalid('name')"
+            formControlName="name"
+            placeholder="Nome completo"
+          />
+          @if (hasError('name', 'required')) {
+            <span class="field-error">Nome é obrigatório</span>
+          } @else if (hasError('name', 'minlength')) {
+            <span class="field-error">Mínimo de 3 caracteres</span>
+          }
+        </div>
 
-        <!-- Email -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>E-mail</mat-label>
-          <input matInput formControlName="email" placeholder="exemplo@email.com" />
-          <mat-error *ngIf="hasError('email', 'required')">E-mail é obrigatório</mat-error>
-          <mat-error *ngIf="hasError('email', 'email')">E-mail inválido</mat-error>
-        </mat-form-field>
+        <div class="field-group">
+          <label class="field-label" for="email">E-mail <span class="required">*</span></label>
+          <input
+            id="email"
+            class="field-input"
+            [class.error]="isInvalid('email')"
+            formControlName="email"
+            placeholder="exemplo@email.com"
+          />
+          @if (hasError('email', 'required')) {
+            <span class="field-error">E-mail é obrigatório</span>
+          } @else if (hasError('email', 'email')) {
+            <span class="field-error">Formato de e-mail inválido</span>
+          }
+        </div>
 
-        <!-- CPF/CNPJ -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>CPF / CNPJ</mat-label>
-          <input matInput formControlName="document" placeholder="000.000.000-00 ou 00.000.000/0000-00" />
-          <mat-error *ngIf="hasError('document', 'required')">Documento é obrigatório</mat-error>
-          <mat-error *ngIf="hasError('document', 'invalidDocument')">CPF ou CNPJ inválido</mat-error>
-        </mat-form-field>
+        <div class="field-row">
 
-        <!-- Status -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Status</mat-label>
-          <mat-select formControlName="status">
-            <mat-option value="active">Ativo</mat-option>
-            <mat-option value="inactive">Inativo</mat-option>
-          </mat-select>
-          <mat-error *ngIf="hasError('status', 'required')">Status é obrigatório</mat-error>
-        </mat-form-field>
+          <div class="field-group">
+            <label class="field-label" for="document">CPF / CNPJ <span class="required">*</span></label>
+            <input
+              id="document"
+              class="field-input"
+              [class.error]="isInvalid('document')"
+              formControlName="document"
+              placeholder="000.000.000-00"
+            />
+            @if (hasError('document', 'required')) {
+              <span class="field-error">Documento é obrigatório</span>
+            } @else if (hasError('document', 'invalidDocument')) {
+              <span class="field-error">CPF ou CNPJ inválido</span>
+            }
+          </div>
 
-        <!-- Ações -->
+          <div class="field-group">
+            <label class="field-label" for="status">Status <span class="required">*</span></label>
+            <select
+              id="status"
+              class="field-input field-select"
+              [class.error]="isInvalid('status')"
+              formControlName="status"
+            >
+              <option value="active">Ativo</option>
+              <option value="inactive">Inativo</option>
+            </select>
+          </div>
+
+        </div>
+
         <div class="form-actions">
-          <button mat-stroked-button type="button" routerLink="/">
-            <mat-icon>arrow_back</mat-icon>
-            Cancelar
-          </button>
-
-          <button mat-flat-button color="primary" type="submit">
-            <mat-icon>save</mat-icon>
-            {{ isEditMode ? 'Salvar Alterações' : 'Cadastrar' }}
+          <a class="btn-secondary" routerLink="/">Cancelar</a>
+          <button class="btn-primary" type="submit">
+            {{ isEditMode ? 'Salvar Alterações' : 'Cadastrar Cliente' }}
           </button>
         </div>
 
       </form>
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </div>
 </div>

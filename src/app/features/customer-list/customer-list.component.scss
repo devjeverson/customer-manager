@@ -1,45 +1,214 @@
+// ─── Header ───────────────────────────────────────────────
+
 .list-header {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .page-title {
-  font-size: 1.8rem;
-  font-weight: 500;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: var(--color-text);
+  letter-spacing: -0.5px;
+}
+
+.page-subtitle {
   margin: 0;
-  color: #333;
+  font-size: 0.875rem;
+  color: var(--color-muted);
 }
 
-.search-field {
+// ─── Botão primário ───────────────────────────────────────
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.15s;
+
+  &:hover { opacity: 0.88; transform: translateY(-1px); }
+  &:active { transform: translateY(0); }
+
+  .btn-icon { font-size: 1.1rem; line-height: 1; }
+}
+
+// ─── Search ───────────────────────────────────────────────
+
+.search-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: var(--color-muted);
+  pointer-events: none;
+}
+
+.search-input {
   width: 100%;
-  margin-bottom: 16px;
+  padding: 14px 44px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+
+  &::placeholder { color: var(--color-muted); }
+  &:focus { border-color: var(--color-accent); }
 }
 
-.full-width {
+.search-clear {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.2s;
+
+  &:hover { color: var(--color-text); }
+}
+
+// ─── Table Card ───────────────────────────────────────────
+
+.table-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.data-table {
   width: 100%;
+  border-collapse: collapse;
+
+  thead tr {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  th {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--color-muted);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--color-border);
+    transition: background 0.15s;
+
+    &:last-child { border-bottom: none; }
+    &:hover { background: rgba(255,255,255,0.03); }
+  }
+
+  td {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+
+  .td-name  { font-weight: 500; }
+  .td-muted { color: var(--color-muted); }
+  .td-mono  { font-family: 'DM Mono', monospace; font-size: 0.82rem; color: var(--color-muted); }
 }
 
-// ─── Status Badge ─────────────────────────────────────────
+// ─── Badge ────────────────────────────────────────────────
 
-.status-badge {
-  display: inline-block;
-  padding: 4px 12px;
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 500;
-  letter-spacing: 0.3px;
 
-  &.active {
-    background-color: #e8f5e9;
-    color: #2e7d32;
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
   }
 
-  &.inactive {
-    background-color: #fce4ec;
-    color: #c62828;
+  &.badge-active {
+    background: var(--color-success-bg);
+    color: var(--color-success-fg);
+    .badge-dot { background: var(--color-success-fg); }
   }
+
+  &.badge-inactive {
+    background: var(--color-danger-bg);
+    color: var(--color-danger-fg);
+    .badge-dot { background: var(--color-danger-fg); }
+  }
+}
+
+// ─── Actions ─────────────────────────────────────────────
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+
+  &.edit {
+    color: var(--color-muted);
+    &:hover { background: var(--color-accent-dim); border-color: var(--color-accent); color: var(--color-accent); }
+  }
+
+  &.delete {
+    color: var(--color-muted);
+    &:hover { background: var(--color-danger-bg); border-color: var(--color-danger-fg); color: var(--color-danger-fg); }
+  }
+}
+
+// ─── Table Footer ─────────────────────────────────────────
+
+.table-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  text-align: right;
 }
 
 // ─── Empty State ──────────────────────────────────────────
@@ -48,39 +217,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 24px;
-  color: #9e9e9e;
-  gap: 12px;
-
-  mat-icon {
-    font-size: 48px;
-    width: 48px;
-    height: 48px;
-  }
-
-  p {
-    font-size: 1rem;
-    margin: 0;
-  }
+  padding: 64px 24px;
+  gap: 8px;
 }
 
-// ─── Contador ─────────────────────────────────────────────
-
-.results-count {
-  margin-top: 12px;
-  font-size: 0.85rem;
-  color: #757575;
-  text-align: right;
+.empty-icon {
+  font-size: 2.5rem;
+  color: var(--color-muted);
+  margin-bottom: 8px;
+  opacity: 0.5;
 }
 
-// ─── Tabela ───────────────────────────────────────────────
-
-th.mat-header-cell {
+.empty-title {
+  font-size: 1.1rem;
   font-weight: 600;
-  color: #424242;
+  color: var(--color-text);
+  margin: 0;
 }
 
-td.mat-cell {
-  padding-top: 10px;
-  padding-bottom: 10px;
+.empty-sub {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin: 0 0 16px;
 }

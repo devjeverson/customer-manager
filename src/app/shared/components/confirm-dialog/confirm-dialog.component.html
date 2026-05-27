@@ -1,17 +1,22 @@
-<h2 mat-dialog-title>
-  <mat-icon color="warn">warning</mat-icon>
-  {{ data.title }}
-</h2>
+    <div class="dialog">
+      <div class="dialog-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+          <path d="M10 11v6M14 11v6"/>
+          <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+        </svg>
+      </div>
 
-<mat-dialog-content>
-  <p>{{ data.message }}</p>
-</mat-dialog-content>
+      <h2 class="dialog-title">{{ data.title }}</h2>
+      <p class="dialog-message">{{ data.message }}</p>
 
-<mat-dialog-actions align="end">
-  <button mat-stroked-button (click)="cancel()">
-    {{ data.cancelLabel ?? "Cancelar" }}
-  </button>
-  <button mat-flat-button color="warn" (click)="confirm()">
-    {{ data.confirmLabel ?? "Confirmar" }}
-  </button>
-</mat-dialog-actions>
+      <div class="dialog-actions">
+        <button class="btn-cancel" (click)="cancel()">
+          {{ data.cancelLabel ?? 'Cancelar' }}
+        </button>
+        <button class="btn-confirm" (click)="confirm()">
+          {{ data.confirmLabel ?? 'Confirmar' }}
+        </button>
+      </div>
+    </div>

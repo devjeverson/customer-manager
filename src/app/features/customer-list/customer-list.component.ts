@@ -93,7 +93,7 @@ export class CustomerListComponent {
       }
     });
   }
-
+  
   formatDocument(doc: string): string {
     const digits = doc.replace(/\D/g, '');
 

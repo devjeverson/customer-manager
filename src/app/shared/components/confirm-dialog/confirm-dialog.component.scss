@@ -1,16 +1,94 @@
-h2 {
+:host {
+  display: block;
+}
+
+.dialog {
+  background: #1a1d27;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 32px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+}
+
+.dialog-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(251, 113, 133, 0.12);
+  color: #921528;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-mat-dialog-content p {
-  font-size: 1rem;
-  color: #444;
-  margin: 8px 0;
+.dialog-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #e8e9ed;
+  margin: 0 0 10px;
+  letter-spacing: -0.3px;
 }
 
-mat-dialog-actions {
-  gap: 8px;
-  padding-bottom: 16px;
+.dialog-message {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 28px;
+  line-height: 1.6;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 11px;
+  background: transparent;
+  color: #6b7280;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+
+  &:hover {
+    color: #e8e9ed;
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.btn-confirm {
+  flex: 1;
+  padding: 11px;
+  background: #921528;
+  color: #ffffff;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    opacity 0.2s,
+    transform 0.15s;
+
+  &:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: translateY(0);
+  }
 }

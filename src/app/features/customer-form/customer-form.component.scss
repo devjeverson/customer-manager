@@ -1,24 +1,148 @@
-mat-card {
-  max-width: 600px;
+.form-page {
+  max-width: 580px;
   margin: 0 auto;
 }
 
-mat-card-header {
-  margin-bottom: 24px;
+// ─── Header ───────────────────────────────────────────────
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+
+  &:hover { color: var(--color-text); }
 }
 
-mat-card-title {
-  font-size: 1.4rem;
+.form-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+  color: var(--color-text);
 }
 
-.full-width {
+.form-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin: 0 0 28px;
+}
+
+// ─── Card ─────────────────────────────────────────────────
+
+.form-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+}
+
+// ─── Fields ───────────────────────────────────────────────
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  .required { color: var(--color-accent); margin-left: 2px; }
+}
+
+.field-input {
+  padding: 12px 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
   width: 100%;
-  margin-bottom: 8px;
+
+  &::placeholder { color: var(--color-muted); }
+  &:focus { border-color: var(--color-accent); }
+  &.error { border-color: var(--color-danger-fg); }
 }
+
+.field-select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+
+  option {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+}
+
+.field-error {
+  font-size: 0.78rem;
+  color: var(--color-danger-fg);
+}
+
+// ─── Actions ─────────────────────────────────────────────
 
 .form-actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.btn-primary {
+  padding: 11px 24px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  text-decoration: none;
+
+  &:hover { opacity: 0.88; transform: translateY(-1px); }
+}
+
+.btn-secondary {
+  padding: 11px 20px;
+  background: transparent;
+  color: var(--color-muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s, border-color 0.2s;
+
+  &:hover { color: var(--color-text); border-color: rgba(255,255,255,0.15); }
 }

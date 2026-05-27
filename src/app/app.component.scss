@@ -1,0 +1,72 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15, 17, 23, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #e8e9ed;
+}
+
+.brand-icon {
+  font-size: 1.4rem;
+  color:   #3b82f6;
+  line-height: 1;
+}
+
+.brand-name {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+
+  strong {
+    font-weight: 600;
+    margin-left: 2px;
+  }
+}
+
+.header-nav {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+
+  a {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    transition:
+      color 0.2s,
+      background 0.2s;
+
+    &:hover {
+      color: #e8e9ed;
+      background: rgba(253, 253, 251, 0.12);
+    }
+    &.active {
+      color: #e8e9ed;
+      background: rgba(245, 247, 250, 0.1);
+    }
+  }
+}
