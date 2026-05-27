@@ -1,59 +1,156 @@
-# CustomerManager
+# Customer Manager
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.26.
+Aplicação frontend para gerenciamento de clientes desenvolvida como teste técnico utilizando Angular 20, com foco em arquitetura moderna, componentização, performance e boas práticas de engenharia de software.
 
-## Development server
+---
 
-To start a local development server, run:
+# Objetivo do Projeto
+
+O projeto simula um sistema de gestão de clientes, permitindo operações completas de CRUD com persistência local, validações customizadas e experiência de usuário otimizada.
+
+A proposta foi desenvolver uma aplicação organizada, escalável e preparada para evolução futura, seguindo padrões utilizados em aplicações corporativas.
+
+---
+
+# Tecnologias Utilizadas
+
+- Angular 20
+- TypeScript
+- Angular Material
+- RxJS
+- Angular Signals
+- Reactive Forms
+- SCSS
+- localStorage
+
+---
+
+# Principais Funcionalidades
+
+- Listagem de clientes
+- Cadastro de clientes
+- Edição reutilizando o mesmo formulário
+- Exclusão com confirmação via dialog
+- Busca em tempo real por nome ou e-mail
+- Validação de CPF/CNPJ com algoritmo oficial
+- Persistência de dados com localStorage
+- Feedback visual com Snackbar
+- Interface responsiva
+- Lazy loading nas rotas
+
+---
+
+# Como Executar o Projeto
+
+## Pré-requisitos
+
+- Node.js 18+
+- Angular CLI 20+
+
+## Instalação
+
+```bash
+git clone https://github.com/devjeverson/customer-manager.git
+
+cd customer-manager
+
+npm install
+```
+
+## Executando em ambiente de desenvolvimento
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Acesse:
 
 ```bash
-ng generate component component-name
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
+
+# Estrutura do Projeto
 
 ```bash
-ng generate --help
+src/app/
+├── core/
+│   └── services/
+│       └── customer.service.ts
+│
+├── models/
+│   └── customer.model.ts
+│
+├── shared/
+│   ├── components/
+│   │   └── confirm-dialog/
+│   ├── validators/
+│   │   └── document.validator.ts
+│   └── pipes/
+│       └── document-mask.pipe.ts
+│
+├── features/
+│   ├── customer-list/
+│   └── customer-form/
+│
+└── app.routes.ts
 ```
 
-## Building
+---
 
-To build the project run:
+# Decisões Técnicas
 
-```bash
-ng build
-```
+## Angular Standalone
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+A aplicação utiliza standalone components, eliminando a necessidade de NgModules e reduzindo boilerplate da aplicação.
 
-## Running unit tests
+## Reactive Forms
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Escolhido para proporcionar maior controle sobre validações, estado do formulário e escalabilidade.
 
-```bash
-ng test
-```
+## Signals + RxJS
 
-## Running end-to-end tests
+A combinação de `BehaviorSubject`, `toSignal()` e `computed()` foi utilizada para criar um fluxo reativo simples, performático e de fácil manutenção.
 
-For end-to-end (e2e) testing, run:
+## localStorage
 
-```bash
-ng e2e
-```
+Utilizado como camada de persistência para o contexto do teste técnico, mantendo a arquitetura preparada para futura integração com API REST.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Angular Material
 
-## Additional Resources
+Adotado para garantir consistência visual, acessibilidade e maior produtividade no desenvolvimento da interface.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+# Diferenciais Implementados
+
+- Arquitetura organizada por features
+- Componentes reutilizáveis
+- Dialog genérico de confirmação
+- Filtro reativo com debounce
+- Separação de responsabilidades
+- Código preparado para escalabilidade
+- Validação manual de CPF/CNPJ sem dependências externas
+
+---
+
+# Melhorias Futuras
+
+- Integração com API REST
+- Paginação e ordenação
+- Filtro por status
+- Máscara automática para CPF/CNPJ
+- Testes unitários e E2E
+- Dockerização
+- Pipeline CI/CD
+- Exportação CSV/PDF
+- Autenticação e autorização
+
+---
+
+# Autor
+
+Jeverson Oliveira  
+Pós-graduando em Engenharia de Software  
+Desenvolvedor Frontend e Full Stack
